@@ -1,12 +1,12 @@
 #include "sosho_L.dtsi"
 
 &spi1 { status = "okay"; };
-&trackball{ status = "okay"; };
-&tracball_listener {
+&trackball { status = "okay"; };
+&trackball_listener {
     status = "okay";
-    input-processors = <&zip_xy_to_scroll_mapper>
+    input-processors = <&zip_xy_to_scroll_mapper>;
 };
-&trackball_split{
+&trackball_split {
     status = "okay";
     device = <&trackball>;
 };
