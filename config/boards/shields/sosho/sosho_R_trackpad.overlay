@@ -17,7 +17,4 @@
 };
 
 &trackball_split { status = "okay"; };
-&trackball_split_listener {
-    status = "okay";
-    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 64>;
-};
+&trackball_split_listener { status = "okay" };
