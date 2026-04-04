@@ -17,4 +17,4 @@
 };
 
 &trackball_split { status = "okay"; };
-&trackball_split_listener { status = "okay" };
+&trackball_split_listener { status = "okay"; };
