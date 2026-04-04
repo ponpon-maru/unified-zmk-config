@@ -2,10 +2,6 @@
 
 &spi1 { status = "okay"; };
 &trackball { status = "okay"; };
-&trackball_listener {
-    status = "okay";
-    input-processors = <&zip_xy_to_scroll_mapper>;
-};
 &trackball_split {
     status = "okay";
     device = <&trackball>;
