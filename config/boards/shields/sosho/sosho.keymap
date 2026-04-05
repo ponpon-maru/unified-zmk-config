@@ -118,10 +118,7 @@
             bindings = <&mo 4>;
         };
     };
-};
-
-// マクロ定義
-/{
+    // マクロ定義
     macro{
         alt_tab: alt_tab {
             compatible = "zmk,behavior-macro";
