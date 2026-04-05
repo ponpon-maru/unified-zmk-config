@@ -34,7 +34,6 @@
 	        compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&kp LS(PG_DN)>, <&kp LS(PG_UP)>;
-			tap-ms = <0>;
         };
 	};
 };
