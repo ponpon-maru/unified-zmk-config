@@ -1,3 +1,6 @@
+#ifndef KEYCODE_JAPANESE_H
+#define KEYCODE_JAPANESE_H
+
 #define JP_ZKHK  GRAVE        // Zenkaku ↔ Hankaku ↔ Kanji (半角 ↔ 全角 ↔ 漢字)
 #define JP_MINUS MINUS        // -
 #define JP_CARET EQUAL        // ^
@@ -37,3 +40,5 @@
 #define JP_RT    LS(JP_DOT)   // >
 #define JP_QMARK LS(JP_SLASH) // ?
 #define JP_UNDER LS(JP_BSLH)  // _
+
+#endif // KEYCODE_JAPANESE_H
