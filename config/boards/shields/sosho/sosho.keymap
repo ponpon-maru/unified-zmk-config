@@ -155,7 +155,7 @@
     
         layer_1 {
             bindings = <
-                &trans  &none &none      &kp N7 &kp N8  &kp N9  /*|*/ &kp LS(N4)   &kp LS(N7) &kp JP_LBKT &kp JP_RBRKT &kp LS(N1)   &kp JP_GRAVE
+                &trans  &none &none      &kp N7 &kp N8  &kp N9  /*|*/ &kp LS(N4)   &kp LS(N7) &kp JP_LBKT &kp JP_RBRKT &kp LS(N1)   &kp LS(JP_AT)
                 &trans  &none &kp LS(N5) &kp N4 &kp N5  &kp N6  /*|*/ &kp JP_CARET &kp LS(N2) &kp LS(N8)  &kp LS(N9)   &kp JP_COLON &kp JP_ASTRK
                 &trans  &none &none      &kp N1 &kp N2  &kp N3  /*|*/ &kp JP_TILDE &kp LS(N6) &kp JP_LBRC &kp JP_RBRC  &kp LS(N3)   &kp JP_PIPE
                 &trans  &trans                  &kp N0  &kp DOT /*|*/ &trans       &trans                              &trans       &trans
@@ -182,7 +182,7 @@
         scroll {
             status = "reserved";
         };
-    
+
         extra2 {
             status = "reserved";
         };
