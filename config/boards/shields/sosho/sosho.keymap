@@ -97,7 +97,7 @@
             bindings = <&macro_tap &kp R &kp E &kp P &kp T &kp L &kp N6 &kp N4 &kp LS(T) &kp LS(T)>;
         };
     };
-}
+};
 
 
 // キー配置
