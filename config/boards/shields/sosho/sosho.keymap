@@ -76,7 +76,7 @@
 		ec_pgchg: sensor_rotation_page_change { //ページ切り替え用のビヘイビア(L)
 	        compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&kp LS(PG_DN)>, <&kp LS(PG_UP)>;
+            bindings = <&kp LC(PG_DN)>, <&kp LC(PG_UP)>;
         };
 	};
     combos {
