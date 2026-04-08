@@ -13,30 +13,74 @@
 /{
 	behaviors {
 		//エンコーダにスクロールを割り当てるためのビヘイビア
-		msc_ec_l: sensor_rotation_scroll_L {
-	        compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-			tap-ms = <20>;
-        };
-		msc_ec_r: sensor_rotation_scroll_R {
-	        compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-			tap-ms = <20>;
-        };
-		ec_appsel: sensor_rotation_app_selection { //アプリケーション切り替え用のビヘイビア(R)
-	        compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&kp LA(LS(TAB))>, <&kp LA(TAB)>;
-			tap-ms = <300>;
-        };
-		ec_pgchg: sensor_rotation_page_change { //ページ切り替え用のビヘイビア(L)
+		// msc_ec_l: sensor_rotation_scroll_L {
+	    //     compatible = "zmk,behavior-sensor-rotate-var";
+        //     #sensor-binding-cells = <2>;
+        //     bindings = <&msc>, <&msc>;
+		// 	tap-ms = <20>;
+        // };
+		// msc_ec_r: sensor_rotation_scroll_R {
+	    //     compatible = "zmk,behavior-sensor-rotate-var";
+        //     #sensor-binding-cells = <2>;
+        //     bindings = <&msc>, <&msc>;
+		// 	tap-ms = <20>;
+        // };
+
+        // エンコーダ用
+		ec_pgchg: sensor_rotation_page_change { // ページ切り替え用のビヘイビア(L)
 	        compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&kp LC(PG_UP)>, <&kp LC(PG_DN)>;
         };
+        ec_ctrl_r_p: encoder_ctrl_right_pos { // ctrl エンコーダ(R) 時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT>, <&kp TAB>;
+            mods = <(MOD_LCTRL)>;
+            keep-mods = <(MOD_LCTRL)>;
+        };
+        ec_ac_r_p: encoder_alt_ctrl_right_pos { // alt,ctrl エンコーダ(R) 時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&ec_ctrl_r_p>, <&kp TAB>;
+            mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
+        ec_ctrl_r_n: encoder_ctrl_right_neg { // ctrl エンコーダ(R) 反時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT>, <&kp LS(TAB)>;
+            mods = <(MOD_LCTRL)>;
+            keep-mods = <(MOD_LCTRL)>;
+        };
+        ec_ac_r_n: encoder_alt_ctrl_right_neg { // alt,ctrl エンコーダ(R) 反時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&ec_ctrl_r_n>, <&kp LS(TAB)>;
+            mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
+        ec_mod_r_p: encoder_mod_right_pos { // modキー+エンコーダのビヘイビア(R) 時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT>, <&ec_ac_r_p>;
+            mods = <(MOD_LALT|MOD_LCTRL)>;
+        };
+        ec_mod_r_n: encoder_mod_right_neg { // modキー+エンコーダのビヘイビア(R) 反時計回り
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT>, <&ec_ac_r_n>;
+            mods = <(MOD_LALT|MOD_LCTRL)>;
+        };
+        ec_mod_r: encoder_mod_right { // modキー+エンコーダのビヘイビア(R)
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&ec_mod_r_n>, <&ec_mod_r_p>;
+            tap-ms = <10>;
+        };
 	};
+
+    // コンボキー
     combos {
         compatible = "zmk,combos";
         prioritize-longer-keys;
@@ -61,13 +105,29 @@
             bindings = <&mkp MCLK>;
         };
 
+        // かな英数関連
+        combo_KANA { // かな 14 S 15 D
+            timeout-ms = <50>;
+            key-positions = <14 15>;
+            bindings = <&kp LANG1>;
+        };
+        combo_EISU { // 英数 15 D 16 F
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            bindings = <&kp LANG2>;
+        };
+        combo_ZENHAN { // 全角/半角 14 S 16 F
+            timeout-ms = <50>;
+            key-positions = <14 16>;
+            bindings = <&kp JP_ZKHK>;
+        };
 		//作ったけど消した。ポインティングデバイスをスクロールにしたい人向け
 		//31 M 32 ,
-		combo_SCROLL {
-            timeout-ms = <50>;
-            key-positions = <31 32>;
-            bindings = <&mo 4>;
-        };
+		// combo_SCROLL {
+        //     timeout-ms = <50>;
+        //     key-positions = <31 32>;
+        //     bindings = <&mo 4>;
+        // };
     };
     // マクロ定義
     macro{
@@ -109,7 +169,7 @@
                 &kp LALT        &kp LGUI              &lt 2 SPACE   &lt 3 DEL /*|*/ &kp BSPC &lt 1 ENTER                &kp LANG1    &kp LANG2
             >;
     		//&msc_ec_lとrは、上のビヘイビアで作ったもの。
-            sensor-bindings = <&ec_pgchg &ec_appsel>;
+            sensor-bindings = <&ec_pgchg &ec_mod_r>;
         };
         // default_layer {
         //     bindings = <
