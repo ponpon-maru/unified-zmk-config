@@ -71,14 +71,25 @@
     };
     // マクロ定義
     macro{
-        alt_tab: alt_tab {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+        rmt_a: rmt_alt { //リモートデスク用 Alt+ のマクロ
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
             bindings
                 = <&macro_press &kp LALT>
                 , <&macro_wait_time 20>
-                , <&macro_tap &kp TAB>
+                , <&macro_param_1to1>
+                , <&macro_tap &kp MACRO_PLACEHOLDER>
                 , <&macro_release &kp LALT>;
+        };
+        rmt_as: rmt_alt_shift { //リモートデスク用 Alt+Shift+ のマクロ
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings
+                = <&macro_press &kp LALT &kp LSFT>
+                , <&macro_wait_time 20>
+                , <&macro_param_1to1>
+                , <&macro_tap &kp MACRO_PLACEHOLDER>
+                , <&macro_release &kp LALT &kp LSFT>;
         };
         my_key: my_key {
             compatible = "zmk,behavior-macro";
@@ -122,7 +133,7 @@
 
         layer_2 {
             bindings = <
-                &trans  &none     &kp F10   &kp F7  &kp F8    &kp F9  /*|*/ &mkp MB3  &kp PG_UP &alt_tab    &kp PG_DN &mkp MB5  &none
+                &trans  &none     &kp F10   &kp F7  &kp F8    &kp F9  /*|*/ &mkp MB3  &kp PG_UP &rmt_a TAB  &kp PG_DN &mkp MB5  &none
                 &trans  &mkp MB3  &kp F11   &kp F4  &kp F5    &kp F6  /*|*/ &kp HOME  &mkp MB1  &kp UP      &mkp MB2  &mkp MB4  &none
                 &trans  &kp LCTRL &kp F12   &kp F1  &kp F2    &kp F3  /*|*/ &kp END   &kp LEFT  &kp DOWN    &kp RIGHT &kp QMARK &none
                 &trans  &trans                      &kp SPACE &kp DEL /*|*/ &trans  &trans                            &trans    &trans
@@ -131,10 +142,10 @@
 
         layer_3 {
             bindings = <
-                &trans          &none       &kp LA(F4)    &none  &kp LG(R)      &kp LG(LC(T))    /*|*/ &trans          &my_key          &kp INSERT         &none               &none   &bt BT_SEL 0
-                &trans          &none       &kp LG(LS(S)) &none  &kp LA(LS(F))  &kp LA(LS(UP))   /*|*/ &kp LG(LS(H))   &trans           &kp LG(LS(UP))     &none               &none   &bt BT_SEL 1
-                &trans          &none       &trans        &none  &kp LG(LS(V))  &kp LA(LS(DOWN)) /*|*/ &kp LC(LA(V))   &kp LG(LS(LEFT)) &kp LG(LS(DOWN))   &kp LG(LS(RIGHT))   &none   &bt BT_SEL 2
-                &bt BT_CLR_ALL  &bt BT_CLR                       &trans         &trans           /*|*/ &trans          &kp LA(ENTER)                                           &trans  &bt BT_SEL 3
+                &trans          &none       &kp LA(F4)    &none  &kp LG(R)      &kp LG(LC(T))   /*|*/ &trans          &my_key          &kp INSERT         &none               &none   &bt BT_SEL 0
+                &trans          &none       &kp LG(LS(S)) &none  &rmt_as F      &rmt_as UP      /*|*/ &kp LG(LS(H))   &trans           &kp LG(LS(UP))     &none               &none   &bt BT_SEL 1
+                &trans          &none       &trans        &none  &kp LG(LS(V))  &rmt_as DOWN    /*|*/ &kp LC(LA(V))   &kp LG(LS(LEFT)) &kp LG(LS(DOWN))   &kp LG(LS(RIGHT))   &none   &bt BT_SEL 2
+                &bt BT_CLR_ALL  &bt BT_CLR                       &trans         &trans          /*|*/ &trans          &rmt_a ENTER                                            &trans  &bt BT_SEL 3
             >;
         };
         scroll {
