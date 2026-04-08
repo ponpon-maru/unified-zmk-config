@@ -36,8 +36,8 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RIGHT>, <&kp TAB>;
-            mods = <(MOD_LCTRL)>;
-            keep-mods = <(MOD_LCTRL)>;
+            mods = <(MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL)>;
         };
         ec_ac_r_p: encoder_alt_ctrl_right_pos { // alt,ctrl エンコーダ(R) 時計回り
             compatible = "zmk,behavior-mod-morph";
@@ -50,8 +50,8 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LEFT>, <&kp LS(TAB)>;
-            mods = <(MOD_LCTRL)>;
-            keep-mods = <(MOD_LCTRL)>;
+            mods = <(MOD_LCTL)>;
+            keep-mods = <(MOD_LCTL)>;
         };
         ec_ac_r_n: encoder_alt_ctrl_right_neg { // alt,ctrl エンコーダ(R) 反時計回り
             compatible = "zmk,behavior-mod-morph";
@@ -64,13 +64,13 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RIGHT>, <&ec_ac_r_p>;
-            mods = <(MOD_LALT|MOD_LCTRL)>;
+            mods = <(MOD_LALT|MOD_LCTL)>;
         };
         ec_mod_r_n: encoder_mod_right_neg { // modキー+エンコーダのビヘイビア(R) 反時計回り
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LEFT>, <&ec_ac_r_n>;
-            mods = <(MOD_LALT|MOD_LCTRL)>;
+            mods = <(MOD_LALT|MOD_LCTL)>;
         };
         ec_mod_r: encoder_mod_right { // modキー+エンコーダのビヘイビア(R)
             compatible = "zmk,behavior-sensor-rotate";
