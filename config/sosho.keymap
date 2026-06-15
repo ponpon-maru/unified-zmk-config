@@ -192,7 +192,7 @@
                     &trans  &trans                      &kp SPACE &kp DEL /*|*/ &trans  &trans                            &trans    &trans
             >;
     		//レイヤー2のときだけ、左手のエンコーダを回すとボリュームの上下ができるようになっています。
-    		sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &msc_ec_r SCRL_UP SCRL_DOWN>;
+    		// sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &msc_ec_r SCRL_UP SCRL_DOWN>;
 
         };
 
